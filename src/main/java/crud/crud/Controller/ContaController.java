@@ -4,10 +4,9 @@ import crud.crud.Repository.ContaRepository;
 import crud.crud.models.Conta;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin(origins = "*")
 @AllArgsConstructor
@@ -21,4 +20,7 @@ public class ContaController {
     public Conta inserirConta(@RequestBody Conta conta){
         return contaRepository.save(conta);
     }
+    
+    @GetMapping("/conta")
+    public List<Conta> listarContas(){return contaRepository.findAll();}
 }
