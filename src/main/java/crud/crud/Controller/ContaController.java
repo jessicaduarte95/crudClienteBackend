@@ -23,4 +23,10 @@ public class ContaController {
     
     @GetMapping("/conta")
     public List<Conta> listarContas(){return contaRepository.findAll();}
+
+    @DeleteMapping("/conta/{idConta}")
+    public void excluirConta(@PathVariable("idConta") Long idConta){
+        contaRepository.deleteById(idConta);
+    }
+
 }
