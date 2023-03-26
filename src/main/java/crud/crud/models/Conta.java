@@ -1,5 +1,6 @@
 package crud.crud.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +19,7 @@ public class Conta {
     private Long idConta;
     private Long numConta;
 
-    @OneToOne
-    @JoinColumn(unique = true, name = "idCliente")
+    @ManyToOne
+    @JoinColumn(name = "idCliente", nullable = false)
     private Cliente cliente;
 }
