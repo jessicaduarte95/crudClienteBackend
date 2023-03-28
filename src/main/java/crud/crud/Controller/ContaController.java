@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @AllArgsConstructor
@@ -25,6 +26,13 @@ public class ContaController {
     
     @GetMapping("/conta")
     public List<Conta> listarContas(){return contaRepository.findAll();}
+
+    @GetMapping("/conta/{idConta}")
+    public ResponseEntity<Conta> contaCliente(@PathVariable("idConta") Long idConta){
+        Optional<Conta> contaCliente = contaRepository.findById(idConta);
+
+        return new ResponseEntity<Conta>(contaCliente.get(), HttpStatus.OK);
+    }
 
     @DeleteMapping("/conta/{idConta}")
     public void excluirConta(@PathVariable("idConta") Long idConta){
