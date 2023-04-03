@@ -27,6 +27,11 @@ public class ContaController {
     @GetMapping("/conta")
     public List<Conta> listarContas(){return contaRepository.findAll();}
 
+    @GetMapping("/conta/filtro/{cliente}")
+    public List<Conta> listarContaPorCliente(@PathVariable Long cliente) {
+        return contaRepository.findByClienteIdCliente(cliente);
+    }
+
     @GetMapping("/conta/{idConta}")
     public ResponseEntity<Conta> contaCliente(@PathVariable("idConta") Long idConta){
         Optional<Conta> contaCliente = contaRepository.findById(idConta);
